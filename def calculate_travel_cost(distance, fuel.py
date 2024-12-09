@@ -1,24 +1,23 @@
-def calculate_travel_cost(distance, fuel_efficiency, fuel_price):
-    cost = (distance / fuel_efficiency) * fuel_price
+def calculate_oil_cost(distance, fuel_efficiency, fuel_price):
+    cost = (distance / fuel_efficiency) * fuel_price # ( ระยะทาง / อัตราสิ้นเปลือง ) * ราคาน้ำมัน = ค่าน้ำมันในการเดินทาง
     return cost
 
-def calculate_distance_from_time(time, speed):
-    # คำนวณระยะทางจากเวลา
-    distance = time * speed  # ระยะทาง = เวลา * ความเร็ว
-    return distance
+def calculate_travel_time(distance, speed):
+    return distance / speed # ระยะทาง / ความเร็ว = เวลาที่ใช้ในการเดินทาง
 
 if __name__ == "__main__":
-    time = float(input("กรุณากรอกเวลาเดินทาง (ชั่วโมง): "))
-    speed = float(input("กรุณากรอกความเร็ว (กิโลเมตร/ชั่วโมง): "))
-    fuel_efficiency = float(input("กรุณากรอกอัตราการใช้น้ำมันของรถ (กิโลเมตรต่อลิตร): "))
-    fuel_price = float(input("กรุณากรอกราคาน้ำมันต่อลิตร (บาท): "))
+    distance = float(input("กรุณากรอกระยะทางที่เดินทาง (Km.): "))
+    speed = float(input("กรุณากรอกความเร็วเฉลี่ยในการเดินทาง (Km/h.): "))
+    fuel_efficiency = float(input("กรุณากรอกอัตราการใช้น้ำมันของรถ (Km/l.): "))
+    fuel_price = float(input("กรุณากรอกราคาน้ำมันต่อลิตร (THB.): "))
     
-    # คำนวณระยะทางจากเวลา
-    distance = calculate_distance_from_time(time, speed)
+    oil_cost = calculate_oil_cost(distance, fuel_efficiency, fuel_price)
+    travel_time = calculate_travel_time(distance, speed)
     
-    # คำนวณค่าใช้จ่ายในการเดินทาง
-    travel_cost = calculate_travel_cost(distance, fuel_efficiency, fuel_price)
-    
-    # แสดงผลลัพธ์
-    print(f"ระยะทางที่เดินทางคือ: {distance:.2f} กิโลเมตร")
-    print(f"ค่าใช้จ่ายในการเดินทางคือ: {travel_cost:.2f} บาท")
+    print("---- รายละเอียดการคำนวณ ----")
+    print(f"ระยะทางที่เดินทาง: {distance:.2f} Km.")
+    print(f"ความเร็วเฉลี่ยในการเดินทาง: {speed:.2f} Km/h.")
+    print(f"อัตราการใช้น้ำมัน: {fuel_efficiency:.2f} Km/l.")
+    print(f"ราคาน้ำมัน: {fuel_price:.2f} THB/l.")
+    print(f"ค่าน้ำมันในการเดินทางคือ: {oil_cost:.2f} THB.")
+    print(f"เวลาที่ใช้ในการเดินทางคือ: {travel_time:.2f} h.")
